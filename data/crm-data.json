@@ -1,0 +1,899 @@
+{
+  "contacts": [
+    {
+      "id": "c74620c",
+      "name": "Hugo",
+      "company": "",
+      "email": "",
+      "phone": "6961633320",
+      "whatsapp": "",
+      "status": "lead",
+      "segment": "Standard",
+      "score": 40,
+      "assignedTo": "Non assigné",
+      "tags": [
+        "telegram",
+        "entrant"
+      ],
+      "lastContact": "2026-03-29T22:41:01.604Z",
+      "createdAt": "2026-03-29T22:13:32.022Z",
+      "notes": "",
+      "interactions": [
+        {
+          "id": "i508170",
+          "type": "telegram",
+          "direction": "inbound",
+          "content": "[Vocal] Salut Sophie, est-ce que tu peux envoyer un message à Sophie Martin en lui disant que j'aurai 5 minutes de retard ?",
+          "transcript": "Salut Sophie, est-ce que tu peux envoyer un message à Sophie Martin en lui disant que j'aurai 5 minutes de retard ?",
+          "isAudio": true,
+          "timestamp": "2026-03-29T22:31:31.010Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Autre",
+          "aiSummary": "Message envoyé à Sophie Martin pour l'informer d'un retard de 5 minutes.",
+          "actionsDetected": [
+            {
+              "type": "SEND_SMS",
+              "target_contact": "Sophie Martin",
+              "content": "Bonjour Sophie, j'aurai 5 minutes de retard. À tout de suite ! Hugo",
+              "subject": null,
+              "field": null,
+              "value": null,
+              "new_contact": null
+            }
+          ]
+        },
+        {
+          "id": "i4517c8",
+          "type": "telegram",
+          "direction": "inbound",
+          "content": "[Vocal] Est-ce que tu peux envoyer un message à Sophie Martin en lui disant que j'aurai 5 minutes de retard ?",
+          "transcript": "Est-ce que tu peux envoyer un message à Sophie Martin en lui disant que j'aurai 5 minutes de retard ?",
+          "isAudio": true,
+          "timestamp": "2026-03-29T22:30:46.875Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Autre",
+          "aiSummary": "Message envoyé à Sophie Martin pour l'informer d'un retard de 5 minutes.",
+          "actionsDetected": [
+            {
+              "type": "SEND_SMS",
+              "target_contact": "Sophie Martin",
+              "content": "Bonjour Sophie, je voulais te prévenir que j'aurai 5 minutes de retard. À tout de suite ! Gilbert",
+              "subject": null,
+              "field": null,
+              "value": null,
+              "new_contact": null
+            }
+          ]
+        },
+        {
+          "id": "ide5cfb",
+          "type": "telegram",
+          "direction": "inbound",
+          "content": "[Vocal] Est-ce que tu peux maintenant envoyer un mail à Sophie Martin, en lui demandant si jamais elle a bien vu le dossier Bercier qui est à rendre pour demain matin, dernière heure, et si jamais elle a besoin de mon aide, tu lui diras sur un ton un peu sympathique, parce qu'elle croche au travail. Et tu lui souhaiteras aussi bon courage.",
+          "transcript": "Est-ce que tu peux maintenant envoyer un mail à Sophie Martin, en lui demandant si jamais elle a bien vu le dossier Bercier qui est à rendre pour demain matin, dernière heure, et si jamais elle a besoin de mon aide, tu lui diras sur un ton un peu sympathique, parce qu'elle croche au travail. Et tu lui souhaiteras aussi bon courage.",
+          "isAudio": true,
+          "timestamp": "2026-03-29T22:15:29.615Z",
+          "status": "processed",
+          "sentiment": "positive",
+          "category": "Commercial",
+          "aiSummary": "Un email a été envoyé à Sophie Martin concernant le dossier Bercier.",
+          "actionsDetected": [
+            {
+              "type": "SEND_EMAIL",
+              "target_contact": "Sophie Martin",
+              "content": "Bonjour Sophie,\n\nJ'espère que tu vas bien. Je voulais m'assurer que tu as bien vu le dossier Bercier qui doit être rendu pour demain matin, dernière heure. Si tu as besoin de mon aide, n'hésite pas à me le faire savoir, je suis là pour te soutenir.\n\nJe te souhaite bon courage pour la finalisation de ce dossier !\n\nBien cordialement,\nGilbert",
+              "subject": "Dossier Bercier à rendre",
+              "field": null,
+              "value": null,
+              "new_contact": null
+            }
+          ]
+        },
+        {
+          "id": "ibf4bdb",
+          "type": "telegram",
+          "direction": "inbound",
+          "content": "[Vocal] Est-ce que tu peux envoyer un message à Sophie Martin en lui demandant si jamais elle dispose à 14h au lieu de 15h, tu lui envoies un message sur son téléphone.",
+          "transcript": "Est-ce que tu peux envoyer un message à Sophie Martin en lui demandant si jamais elle dispose à 14h au lieu de 15h, tu lui envoies un message sur son téléphone.",
+          "isAudio": true,
+          "timestamp": "2026-03-29T22:14:27.775Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Commercial",
+          "aiSummary": "Message envoyé à Sophie Martin pour confirmer sa disponibilité à 14h.",
+          "actionsDetected": [
+            {
+              "type": "SEND_SMS",
+              "target_contact": "Sophie Martin",
+              "content": "Bonjour Sophie, pourrais-tu me confirmer si tu es disponible à 14h au lieu de 15h ? Merci ! Gilbert"
+            }
+          ]
+        },
+        {
+          "id": "ic367dd",
+          "type": "telegram",
+          "direction": "inbound",
+          "content": "/start",
+          "isAudio": false,
+          "timestamp": "2026-03-29T22:13:32.022Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Autre",
+          "aiSummary": "Aucune action effectuée.",
+          "actionsDetected": []
+        }
+      ]
+    },
+    {
+      "id": "c001",
+      "name": "Sophie Martin",
+      "company": "Renault Group",
+      "email": "hugo@lexiapro.fr",
+      "phone": "+33769100607",
+      "whatsapp": "+33612345678",
+      "status": "client",
+      "segment": "Premium",
+      "score": 87,
+      "assignedTo": "Alice Dupont",
+      "tags": [
+        "fidèle",
+        "premium",
+        "B2B"
+      ],
+      "lastContact": "2026-03-29T22:31:37.220Z",
+      "createdAt": "2024-01-15T09:00:00Z",
+      "notes": "Cliente stratégique. Contrat renouvelé en janvier 2026.",
+      "interactions": [
+        {
+          "id": "ie5812f",
+          "timestamp": "2026-03-29T22:31:37.220Z",
+          "status": "processed",
+          "type": "sms",
+          "direction": "outbound",
+          "content": "Bonjour Sophie, j'aurai 5 minutes de retard. À tout de suite ! Hugo"
+        },
+        {
+          "id": "i1a495f",
+          "type": "ptt",
+          "direction": "outbound",
+          "content": "[Commande vocale PTT] Est-ce que tu peux envoyer un mail à sophie martin en lui demandant ses disponibilités pour la semaine prochaine ?",
+          "transcript": "Est-ce que tu peux envoyer un mail à sophie martin en lui demandant ses disponibilités pour la semaine prochaine ?",
+          "isAudio": true,
+          "timestamp": "2026-03-29T17:58:52.936Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Autre",
+          "aiSummary": "Envoyer un mail à Sophie Martin pour connaître ses disponibilités.",
+          "actionsDetected": [
+            {
+              "type": "SEND_EMAIL",
+              "target_contact": "Sophie Martin",
+              "content": "Demande ses disponibilités pour la semaine prochaine.",
+              "subject": "Disponibilités pour la semaine prochaine"
+            }
+          ]
+        },
+        {
+          "id": "ie29171",
+          "timestamp": "2026-03-29T17:58:52.933Z",
+          "status": "processed",
+          "type": "email",
+          "direction": "outbound",
+          "content": "Demande ses disponibilités pour la semaine prochaine."
+        },
+        {
+          "id": "i8b0206",
+          "type": "ptt",
+          "direction": "outbound",
+          "content": "[Commande vocale PTT] Est-ce que tu peux envoyer un mail à Sophie Martin en lui demandant ses disponibilités pour la semaine prochaine ? Tu rédigeras un mail plutôt professionnel.",
+          "transcript": "Est-ce que tu peux envoyer un mail à Sophie Martin en lui demandant ses disponibilités pour la semaine prochaine ? Tu rédigeras un mail plutôt professionnel.",
+          "isAudio": true,
+          "timestamp": "2026-03-29T17:56:46.348Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Autre",
+          "aiSummary": "Envoyer un mail à Sophie Martin pour demander ses disponibilités.",
+          "actionsDetected": [
+            {
+              "type": "SEND_EMAIL",
+              "target_contact": "Sophie Martin",
+              "content": "Demande de disponibilités pour la semaine prochaine.",
+              "subject": "Disponibilités pour la semaine prochaine",
+              "field": null,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "i09d6be",
+          "timestamp": "2026-03-29T17:56:46.344Z",
+          "status": "processed",
+          "type": "email",
+          "direction": "outbound",
+          "content": "Demande de disponibilités pour la semaine prochaine."
+        },
+        {
+          "id": "i8dd577",
+          "type": "ptt",
+          "direction": "outbound",
+          "content": "[Commande vocale PTT] Est-ce que tu peux envoyer un mail à Sophie Martin en lui demandant un horaire pour la semaine prochaine ? Tu rédigeras le mail de manière professionnelle et tu les tutoieras.",
+          "transcript": "Est-ce que tu peux envoyer un mail à Sophie Martin en lui demandant un horaire pour la semaine prochaine ? Tu rédigeras le mail de manière professionnelle et tu les tutoieras.",
+          "isAudio": true,
+          "timestamp": "2026-03-29T15:54:05.579Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Autre",
+          "aiSummary": "Envoyer un mail à Sophie Martin pour demander un horaire pour la semaine prochaine.",
+          "actionsDetected": [
+            {
+              "type": "SEND_EMAIL",
+              "target_contact": "Sophie Martin",
+              "content": "Demande d'horaire pour la semaine prochaine.",
+              "subject": "Demande d'horaire",
+              "field": null,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "ibaf06f",
+          "timestamp": "2026-03-29T15:54:05.572Z",
+          "status": "processed",
+          "type": "email",
+          "direction": "outbound",
+          "content": "Demande d'horaire pour la semaine prochaine."
+        },
+        {
+          "id": "id6f628",
+          "type": "ptt",
+          "direction": "outbound",
+          "content": "[Commande vocale PTT] Est-ce que tu peux envoyer un mail à Sophie Martin en lui demandant si jamais elle a des disponibilités la semaine d'après ?",
+          "transcript": "Est-ce que tu peux envoyer un mail à Sophie Martin en lui demandant si jamais elle a des disponibilités la semaine d'après ?",
+          "isAudio": true,
+          "timestamp": "2026-03-29T14:46:02.835Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Autre",
+          "aiSummary": "Demande d'envoi d'un mail à Sophie pour connaître ses disponibilités.",
+          "actionsDetected": [
+            {
+              "type": "SEND_EMAIL",
+              "target_contact": "Sophie Martin",
+              "content": "Demande si elle a des disponibilités la semaine d'après.",
+              "subject": "Disponibilités la semaine prochaine",
+              "field": null,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "i373691",
+          "type": "ptt",
+          "direction": "outbound",
+          "content": "[Commande vocale PTT] Test d'enregistrement, est-ce que tu peux envoyer un message à Sophie Martin, pas un message pardon, un mail en lui disant si jamais, en lui demandant si jamais elle a dispo pour demain et tu lui demanderas bien aussi, enfin tu le formuleras sur un ton poli et tu lui demanderas aussi si jamais ça avance et le dossier est perdu.",
+          "transcript": "Test d'enregistrement, est-ce que tu peux envoyer un message à Sophie Martin, pas un message pardon, un mail en lui disant si jamais, en lui demandant si jamais elle a dispo pour demain et tu lui demanderas bien aussi, enfin tu le formuleras sur un ton poli et tu lui demanderas aussi si jamais ça avance et le dossier est perdu.",
+          "isAudio": true,
+          "timestamp": "2026-03-29T14:29:00.623Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Commercial",
+          "aiSummary": "Demande d'envoi d'un email à Sophie pour vérifier sa disponibilité et le suivi d'un dossier.",
+          "actionsDetected": [
+            {
+              "type": "SEND_EMAIL",
+              "target_contact": "Sophie Martin",
+              "content": "Bonjour Sophie, j'espère que tu vas bien. Pourrais-tu me dire si tu es disponible pour demain ? Par ailleurs, pourrais-tu me donner des nouvelles concernant le dossier ? Merci d'avance.",
+              "subject": "Demande de disponibilité et suivi du dossier",
+              "field": null,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "i774eb5",
+          "type": "ptt",
+          "direction": "outbound",
+          "content": "[Commande vocale PTT] Est-ce que tu peux envoyer un mail à Sophie Martin en lui demandant si jamais elle a des disponibilités pour la semaine prochaine et si jamais elle voudrait bien qu'on fasse un rendez-vous concernant le dossier Bertier. Donc je rédige bien le mail de manière assez polie.",
+          "transcript": "Est-ce que tu peux envoyer un mail à Sophie Martin en lui demandant si jamais elle a des disponibilités pour la semaine prochaine et si jamais elle voudrait bien qu'on fasse un rendez-vous concernant le dossier Bertier. Donc je rédige bien le mail de manière assez polie.",
+          "isAudio": true,
+          "timestamp": "2026-03-29T14:23:56.340Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Commercial",
+          "aiSummary": "Demande de rendez-vous à Sophie Martin pour le dossier Bertier.",
+          "actionsDetected": [
+            {
+              "type": "SEND_EMAIL",
+              "target_contact": "Sophie Martin",
+              "content": "Demande à Sophie si elle a des disponibilités pour la semaine prochaine et si elle souhaiterait un rendez-vous concernant le dossier Bertier.",
+              "subject": "Demande de disponibilités pour rendez-vous",
+              "field": null,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "i65540f",
+          "type": "ptt",
+          "direction": "outbound",
+          "content": "[Commande vocale PTT] Est-ce que tu peux envoyer un mail à Sophie, bien formulé, en lui demandant si jamais elle a des disponibilités la semaine prochaine pour qu'on discute du dossier Berthier ? Tu formuleras bien le mail, etc.",
+          "transcript": "Est-ce que tu peux envoyer un mail à Sophie, bien formulé, en lui demandant si jamais elle a des disponibilités la semaine prochaine pour qu'on discute du dossier Berthier ? Tu formuleras bien le mail, etc.",
+          "isAudio": true,
+          "timestamp": "2026-03-29T14:15:08.436Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Commercial",
+          "aiSummary": "Demande d'envoi d'un mail à Sophie pour discuter du dossier Berthier.",
+          "actionsDetected": [
+            {
+              "type": "SEND_EMAIL",
+              "target_contact": "Sophie Martin",
+              "content": "Bonjour Sophie, j'espère que tu vas bien. Pourrais-tu me faire savoir si tu as des disponibilités la semaine prochaine afin que nous puissions discuter du dossier Berthier ? Merci d'avance.",
+              "subject": "Disponibilités pour discuter du dossier Berthier",
+              "field": null,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "i252a39",
+          "type": "ptt",
+          "direction": "outbound",
+          "content": "[Commande vocale PTT] Est-ce que tu peux envoyer un SMS à Sophie Martin en lui disant que je suis désolé d'avoir oublié son anniversaire, mais qu'on se voit demain pour fêter ça ?",
+          "transcript": "Est-ce que tu peux envoyer un SMS à Sophie Martin en lui disant que je suis désolé d'avoir oublié son anniversaire, mais qu'on se voit demain pour fêter ça ?",
+          "isAudio": true,
+          "timestamp": "2026-03-29T14:13:18.060Z",
+          "status": "processed",
+          "sentiment": "negative",
+          "category": "Autre",
+          "aiSummary": "Envoyer un SMS d'excuses à Sophie pour son anniversaire.",
+          "actionsDetected": [
+            {
+              "type": "SEND_SMS",
+              "target_contact": "Sophie Martin",
+              "content": "Je suis désolé d'avoir oublié ton anniversaire, mais on se voit demain pour fêter ça.",
+              "subject": null,
+              "field": null,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "i754b42",
+          "timestamp": "2026-03-29T14:13:18.054Z",
+          "status": "processed",
+          "type": "sms",
+          "direction": "outbound",
+          "content": "Je suis désolé d'avoir oublié ton anniversaire, mais on se voit demain pour fêter ça."
+        },
+        {
+          "id": "ieba7b8",
+          "type": "ptt",
+          "direction": "outbound",
+          "content": "[Commande vocale PTT] Est-ce que tu peux envoyer un message à Sophie Martin en lui disant que j'ai bien reçu son message et que j'ai hâte de la rencontrer demain à 10h à nos bureaux ?",
+          "transcript": "Est-ce que tu peux envoyer un message à Sophie Martin en lui disant que j'ai bien reçu son message et que j'ai hâte de la rencontrer demain à 10h à nos bureaux ?",
+          "isAudio": true,
+          "timestamp": "2026-03-29T14:04:23.046Z",
+          "status": "processed",
+          "sentiment": "positive",
+          "category": "Commercial",
+          "aiSummary": "Envoyer un message à Sophie pour confirmer la rencontre.",
+          "actionsDetected": [
+            {
+              "type": "SEND_WHATSAPP",
+              "target_contact": "Sophie Martin",
+              "content": "J'ai bien reçu ton message et j'ai hâte de te rencontrer demain à 10h à nos bureaux.",
+              "subject": null,
+              "field": null,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "iefd6bb",
+          "timestamp": "2026-03-29T14:04:23.042Z",
+          "status": "processed",
+          "type": "whatsapp",
+          "direction": "outbound",
+          "content": "J'ai bien reçu ton message et j'ai hâte de te rencontrer demain à 10h à nos bureaux."
+        },
+        {
+          "id": "i188226",
+          "type": "sms",
+          "direction": "outbound",
+          "content": "hey",
+          "timestamp": "2026-03-29T13:53:56.708Z",
+          "status": "delivered",
+          "sentiment": null,
+          "category": null,
+          "aiSummary": null
+        },
+        {
+          "id": "i0f304d",
+          "type": "sms",
+          "direction": "inbound",
+          "content": "Envoie un mail à Sophie Martin pour confirmer notre rendez-vous de demain à 10h.",
+          "timestamp": "2026-03-29T13:52:44.909Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Support technique",
+          "aiSummary": "Message entrant via sms. Ton neutre. Catégorie: Support technique. Suivi standard recommandé."
+        },
+        {
+          "id": "i13610a",
+          "type": "whatsapp",
+          "direction": "inbound",
+          "content": "Envoie un mail à Sophie Martin pour confirmer notre rendez-vous de demain à 10h.",
+          "timestamp": "2026-03-29T13:47:29.314Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Renouvellement",
+          "aiSummary": "Message entrant via whatsapp. Ton neutre. Catégorie: Renouvellement. Suivi standard recommandé."
+        },
+        {
+          "id": "i69052d",
+          "type": "whatsapp",
+          "direction": "inbound",
+          "content": "Envoie un mail à Sophie Martin pour confirmer notre rendez-vous de demain à 10h.",
+          "timestamp": "2026-03-29T13:46:49.494Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Demande d'information",
+          "aiSummary": "Message entrant via whatsapp. Ton neutre. Catégorie: Demande d'information. Suivi standard recommandé."
+        },
+        {
+          "id": "i001",
+          "type": "whatsapp",
+          "direction": "inbound",
+          "content": "Bonjour, j'ai une question sur ma facture du mois de mars.",
+          "timestamp": "2026-03-28T10:28:00Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Facturation",
+          "aiSummary": "Client demande des informations sur sa facture de mars. Ton général neutre. Action requise: vérifier la facture."
+        },
+        {
+          "id": "i002",
+          "type": "sms",
+          "direction": "outbound",
+          "content": "Bonjour Sophie, votre facture de mars est disponible sur votre espace client. Montant: 2 340€. N'hésitez pas à nous contacter.",
+          "timestamp": "2026-03-28T10:32:00Z",
+          "status": "delivered"
+        },
+        {
+          "id": "i003",
+          "type": "phone",
+          "direction": "inbound",
+          "content": "Appel entrant - durée: 4min 32s",
+          "transcript": "Client satisfaite du service. Souhaite renouveler le contrat annuel. Demande de remise pour fidélité.",
+          "timestamp": "2026-03-15T14:00:00Z",
+          "status": "processed",
+          "sentiment": "positive",
+          "category": "Renouvellement",
+          "aiSummary": "Cliente souhaite renouveler. Demande remise fidélité. Opportunité commerciale forte."
+        }
+      ]
+    },
+    {
+      "id": "c002",
+      "name": "Thomas Leclerc",
+      "company": "BNP Paribas",
+      "email": "t.leclerc@bnpparibas.com",
+      "phone": "+33698765432",
+      "whatsapp": "+33698765432",
+      "status": "prospect",
+      "segment": "Enterprise",
+      "score": 62,
+      "assignedTo": "Marc Bernard",
+      "tags": [
+        "prospect chaud",
+        "finance",
+        "enterprise"
+      ],
+      "lastContact": "2026-03-27T15:00:00Z",
+      "createdAt": "2026-02-20T11:00:00Z",
+      "notes": "Prospect intéressé par notre solution de gestion documentaire.",
+      "interactions": [
+        {
+          "id": "i004",
+          "type": "whatsapp",
+          "direction": "inbound",
+          "content": "Bonjour, je viens de recevoir votre brochure. Très intéressant. Pouvez-vous m'envoyer une démo?",
+          "timestamp": "2026-03-27T15:00:00Z",
+          "status": "processed",
+          "sentiment": "positive",
+          "category": "Demande de démo",
+          "aiSummary": "Prospect intéressé après réception de la brochure. Demande une démonstration. Opportunité haute priorité."
+        },
+        {
+          "id": "i005",
+          "type": "email",
+          "direction": "outbound",
+          "content": "Bonjour Thomas, merci pour votre intérêt! Je vous propose un appel découverte jeudi 2 avril à 10h.",
+          "timestamp": "2026-03-27T16:30:00Z",
+          "status": "delivered"
+        }
+      ]
+    },
+    {
+      "id": "c003",
+      "name": "Isabelle Rousseau",
+      "company": "Carrefour SA",
+      "email": "i.rousseau@carrefour.com",
+      "phone": "+33655443322",
+      "whatsapp": "+33655443322",
+      "status": "client",
+      "segment": "Standard",
+      "score": 45,
+      "assignedTo": "Alice Dupont",
+      "tags": [
+        "support",
+        "réclamation"
+      ],
+      "lastContact": "2026-03-29T09:15:00Z",
+      "createdAt": "2023-06-01T08:00:00Z",
+      "notes": "Client depuis 2023. Quelques incidents de support en 2025.",
+      "interactions": [
+        {
+          "id": "i006",
+          "type": "sms",
+          "direction": "inbound",
+          "content": "Mon accès ne fonctionne plus depuis ce matin. C'est urgent.",
+          "timestamp": "2026-03-29T09:15:00Z",
+          "status": "processed",
+          "sentiment": "negative",
+          "category": "Incident technique",
+          "aiSummary": "Problème d'accès urgent signalé. Ton négatif/stressé. Escalade recommandée au support technique."
+        }
+      ]
+    },
+    {
+      "id": "c004",
+      "name": "Jean-Paul Moreau",
+      "company": "LVMH",
+      "email": "jp.moreau@lvmh.com",
+      "phone": "+33677889900",
+      "whatsapp": "+33677889900",
+      "status": "client",
+      "segment": "Premium",
+      "score": 94,
+      "assignedTo": "Marc Bernard",
+      "tags": [
+        "VIP",
+        "luxury",
+        "partenaire stratégique"
+      ],
+      "lastContact": "2026-03-25T11:00:00Z",
+      "createdAt": "2022-03-10T10:00:00Z",
+      "notes": "Client VIP. Partenariat long terme. Accès direct à la direction.",
+      "interactions": [
+        {
+          "id": "i007",
+          "type": "phone",
+          "direction": "outbound",
+          "content": "Appel sortant - durée: 12min 05s",
+          "transcript": "Appel de suivi trimestriel. Client très satisfait. Intéressé par le nouveau module BI. Budget disponible Q2.",
+          "timestamp": "2026-03-25T11:00:00Z",
+          "status": "processed",
+          "sentiment": "very_positive",
+          "category": "Suivi compte",
+          "aiSummary": "Client VIP très satisfait. Intérêt confirmé pour module BI. Opportunité upsell Q2 - budget confirmé."
+        }
+      ]
+    },
+    {
+      "id": "c005",
+      "name": "Amina Benali",
+      "company": "TotalEnergies",
+      "email": "a.benali@totalenergies.com",
+      "phone": "+33644556677",
+      "whatsapp": "+33644556677",
+      "status": "lead",
+      "segment": "Enterprise",
+      "score": 38,
+      "assignedTo": "Marc Bernard",
+      "tags": [
+        "cold lead",
+        "énergie"
+      ],
+      "lastContact": "2026-03-10T14:00:00Z",
+      "createdAt": "2026-03-01T09:00:00Z",
+      "notes": "Lead identifié via LinkedIn. Pas encore de contact direct.",
+      "interactions": []
+    },
+    {
+      "id": "c006",
+      "name": "Pierre Fontaine",
+      "company": "Société Générale",
+      "email": "p.fontaine@socgen.com",
+      "phone": "+33611223344",
+      "whatsapp": "+33611223344",
+      "status": "prospect",
+      "segment": "Premium",
+      "score": 71,
+      "assignedTo": "Alice Dupont",
+      "tags": [
+        "finance",
+        "compliance"
+      ],
+      "lastContact": "2026-03-22T10:00:00Z",
+      "createdAt": "2026-01-15T09:00:00Z",
+      "notes": "Rencontré au salon FinTech Paris. Fort intérêt pour la solution compliance.",
+      "interactions": [
+        {
+          "id": "i008",
+          "type": "whatsapp",
+          "direction": "inbound",
+          "content": "Bonjour, suite à notre réunion la semaine dernière, avez-vous pu préparer la proposition commerciale?",
+          "timestamp": "2026-03-22T10:00:00Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Suivi commercial",
+          "aiSummary": "Prospect relance pour proposition commerciale suite à une réunion. Priorité: envoyer la propale cette semaine."
+        }
+      ]
+    },
+    {
+      "id": "c007",
+      "name": "Claire Dubois",
+      "company": "AXA France",
+      "email": "c.dubois@axa.fr",
+      "phone": "+33622334455",
+      "whatsapp": "+33622334455",
+      "status": "client",
+      "segment": "Premium",
+      "score": 82,
+      "assignedTo": "Alice Dupont",
+      "tags": [
+        "assurance",
+        "renouvellement",
+        "fidèle"
+      ],
+      "lastContact": "2026-03-28T09:00:00Z",
+      "createdAt": "2023-09-12T10:00:00Z",
+      "notes": "Contrat multi-risque entreprise. Renouvellement annuel en juin.",
+      "interactions": [
+        {
+          "id": "i009",
+          "type": "email",
+          "direction": "inbound",
+          "content": "Bonjour, je souhaite anticiper le renouvellement de notre contrat. Pouvez-vous nous transmettre les conditions 2026?",
+          "timestamp": "2026-03-28T09:00:00Z",
+          "status": "processed",
+          "sentiment": "positive",
+          "category": "Renouvellement",
+          "aiSummary": "Client proactif sur le renouvellement. Bon signal de fidélité. À traiter en priorité."
+        }
+      ]
+    },
+    {
+      "id": "c008",
+      "name": "Nicolas Garnier",
+      "company": "Vinci Construction",
+      "email": "n.garnier@vinci.com",
+      "phone": "+33633445566",
+      "whatsapp": "+33633445566",
+      "status": "prospect",
+      "segment": "Enterprise",
+      "score": 58,
+      "assignedTo": "Marc Bernard",
+      "tags": [
+        "BTP",
+        "grands comptes",
+        "appel d'offre"
+      ],
+      "lastContact": "2026-03-26T14:30:00Z",
+      "createdAt": "2026-02-01T08:00:00Z",
+      "notes": "En cours d'évaluation. Appel d'offre en cours pour Q3.",
+      "interactions": [
+        {
+          "id": "i010",
+          "type": "phone",
+          "direction": "inbound",
+          "content": "Appel entrant - durée: 8min 12s",
+          "transcript": "Intéressé par notre solution pour le chantier Lyon-Sud. Veut une réunion technique avec son équipe IT.",
+          "timestamp": "2026-03-26T14:30:00Z",
+          "status": "processed",
+          "sentiment": "positive",
+          "category": "Commercial",
+          "aiSummary": "Prospect qualifié. Projet concret pour chantier Lyon-Sud. Réunion technique à planifier."
+        }
+      ]
+    },
+    {
+      "id": "c009",
+      "name": "Marie-Christine Lefort",
+      "company": "Capgemini",
+      "email": "mc.lefort@capgemini.com",
+      "phone": "+33644556688",
+      "whatsapp": "+33644556688",
+      "status": "client",
+      "segment": "Enterprise",
+      "score": 76,
+      "assignedTo": "Alice Dupont",
+      "tags": [
+        "IT",
+        "consulting",
+        "partenaire"
+      ],
+      "lastContact": "2026-03-29T11:00:00Z",
+      "createdAt": "2022-11-05T09:00:00Z",
+      "notes": "Partenaire intégrateur. Réfère régulièrement des clients.",
+      "interactions": [
+        {
+          "id": "i011",
+          "type": "sms",
+          "direction": "inbound",
+          "content": "Bonjour, un client souhaite une démo urgente demain matin. Pouvez-vous vous rendre disponible?",
+          "timestamp": "2026-03-29T11:00:00Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Commercial",
+          "aiSummary": "Partenaire demande une démo urgente pour un client. Réponse rapide requise."
+        }
+      ]
+    },
+    {
+      "id": "c010",
+      "name": "Antoine Mercier",
+      "company": "Orange Business",
+      "email": "a.mercier@orange.com",
+      "phone": "+33655667788",
+      "whatsapp": "+33655667788",
+      "status": "lead",
+      "segment": "Standard",
+      "score": 29,
+      "assignedTo": "Marc Bernard",
+      "tags": [
+        "télécom",
+        "cold",
+        "nurturing"
+      ],
+      "lastContact": "2026-03-05T10:00:00Z",
+      "createdAt": "2026-03-01T09:00:00Z",
+      "notes": "Lead froid. À relancer dans 30 jours.",
+      "interactions": []
+    },
+    {
+      "id": "c011",
+      "name": "Sandrine Petit",
+      "company": "Decathlon",
+      "email": "s.petit@decathlon.com",
+      "phone": "+33666778899",
+      "whatsapp": "+33666778899",
+      "status": "client",
+      "segment": "Standard",
+      "score": 61,
+      "assignedTo": "Alice Dupont",
+      "tags": [
+        "retail",
+        "B2B",
+        "actif"
+      ],
+      "lastContact": "2026-03-27T16:00:00Z",
+      "createdAt": "2024-04-20T08:00:00Z",
+      "notes": "Client satisfait. Utilise principalement la solution pour la gestion RH.",
+      "interactions": [
+        {
+          "id": "i012",
+          "type": "whatsapp",
+          "direction": "inbound",
+          "content": "Bonjour, est-ce que vous proposez une formation pour les nouveaux utilisateurs?",
+          "timestamp": "2026-03-27T16:00:00Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Support",
+          "aiSummary": "Demande de formation pour nouveaux utilisateurs. Opportunité d'upsell formation."
+        }
+      ]
+    },
+    {
+      "id": "c012",
+      "name": "Frédéric Blanchard",
+      "company": "Airbus",
+      "email": "f.blanchard@airbus.com",
+      "phone": "+33677889911",
+      "whatsapp": "+33677889911",
+      "status": "prospect",
+      "segment": "Enterprise",
+      "score": 67,
+      "assignedTo": "Marc Bernard",
+      "tags": [
+        "aéronautique",
+        "enterprise",
+        "DSI"
+      ],
+      "lastContact": "2026-03-24T09:30:00Z",
+      "createdAt": "2026-01-20T09:00:00Z",
+      "notes": "DSI Airbus Toulouse. Projet de transformation digitale 2026-2027.",
+      "interactions": [
+        {
+          "id": "i013",
+          "type": "email",
+          "direction": "outbound",
+          "content": "Bonjour Frédéric, suite à notre échange du 20 mars, veuillez trouver ci-joint notre proposition pour votre projet de transformation.",
+          "timestamp": "2026-03-24T09:30:00Z",
+          "status": "delivered"
+        }
+      ]
+    },
+    {
+      "id": "c013",
+      "name": "Laura Nguyen",
+      "company": "Doctolib",
+      "email": "l.nguyen@doctolib.fr",
+      "phone": "+33688990011",
+      "whatsapp": "+33688990011",
+      "status": "client",
+      "segment": "Premium",
+      "score": 89,
+      "assignedTo": "Alice Dupont",
+      "tags": [
+        "healthtech",
+        "scale-up",
+        "priorité haute"
+      ],
+      "lastContact": "2026-03-29T08:00:00Z",
+      "createdAt": "2023-02-14T10:00:00Z",
+      "notes": "Compte stratégique. Croissance forte. Référence secteur santé.",
+      "interactions": [
+        {
+          "id": "i014",
+          "type": "phone",
+          "direction": "inbound",
+          "content": "Appel entrant - durée: 6min 45s",
+          "transcript": "Souhaite étendre la licence à 200 utilisateurs supplémentaires. Demande conditions volume.",
+          "timestamp": "2026-03-29T08:00:00Z",
+          "status": "processed",
+          "sentiment": "very_positive",
+          "category": "Upsell",
+          "aiSummary": "Extension licence +200 utilisateurs. Opportunité upsell immédiate. Envoyer conditions volume ce jour."
+        }
+      ]
+    },
+    {
+      "id": "c014",
+      "name": "Romain Chevalier",
+      "company": "SNCF Connect",
+      "email": "r.chevalier@sncf.fr",
+      "phone": "+33699001122",
+      "whatsapp": "+33699001122",
+      "status": "lead",
+      "segment": "Enterprise",
+      "score": 44,
+      "assignedTo": "Marc Bernard",
+      "tags": [
+        "transport",
+        "secteur public",
+        "appel d'offre"
+      ],
+      "lastContact": "2026-03-18T11:00:00Z",
+      "createdAt": "2026-03-10T09:00:00Z",
+      "notes": "Contact via appel d'offre public. Décision attendue fin avril.",
+      "interactions": [
+        {
+          "id": "i015",
+          "type": "email",
+          "direction": "inbound",
+          "content": "Suite à la publication de notre appel d'offre, nous souhaiterions recevoir votre dossier de candidature avant le 15 avril.",
+          "timestamp": "2026-03-18T11:00:00Z",
+          "status": "processed",
+          "sentiment": "neutral",
+          "category": "Commercial",
+          "aiSummary": "Appel d'offre SNCF. Dossier à déposer avant le 15 avril. Priorité haute."
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "totalContacts": 15,
+    "clients": 7,
+    "prospects": 4,
+    "leads": 4,
+    "messagesThisMonth": 134,
+    "avgResponseTime": "3min 51s",
+    "satisfactionScore": 4.4
+  }
+}

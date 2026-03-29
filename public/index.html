@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lexia CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══ TOP BAR ═══════════════════════════════════════════════ -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Lexia <strong>CRM</strong></span>
+      </div>
+      <nav class="nav-tabs">
+        <button class="nav-tab active" data-page="contacts">Contacts</button>
+        <button class="nav-tab" data-page="messages">Messages</button>
+        <button class="nav-tab" data-page="analytics">Analytiques</button>
+        <button class="nav-tab" data-page="admin">Administration</button>
+      </nav>
+    </div>
+    <div class="topbar-right">
+      <div class="live-badge" id="live-badge">
+        <span class="live-dot"></span>
+        <span>En ligne</span>
+      </div>
+      <button class="btn-ghost" onclick="openNewContactModal()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        Nouveau contact
+      </button>
+      <div class="avatar" id="profile-avatar" onclick="openProfileModal()" title="Mon profil" style="cursor:pointer">HF</div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN LAYOUT ══════════════════════════════════════════ -->
+  <div class="main-layout">
+
+    <!-- ─── LEFT SIDEBAR: Contacts list ──────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-search">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="search-input" placeholder="Rechercher..." />
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">Tous</button>
+        <button class="filter-btn" data-filter="client">Clients</button>
+        <button class="filter-btn" data-filter="prospect">Prospects</button>
+        <button class="filter-btn" data-filter="lead">Leads</button>
+      </div>
+
+      <div class="contacts-list" id="contacts-list"></div>
+    </aside>
+
+    <!-- ─── CENTER: Contact detail ────────────────────────────── -->
+    <main class="crm-main">
+      <div class="empty-state" id="empty-state">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <h3>Sélectionnez un contact</h3>
+        <p>Choisissez un contact dans la liste pour consulter ses informations et son historique.</p>
+      </div>
+
+      <div class="contact-detail hidden" id="contact-detail">
+
+        <!-- Header -->
+        <div class="detail-header">
+          <div class="detail-avatar" id="detail-avatar"></div>
+          <div class="detail-info">
+            <div class="detail-name-row">
+              <h2 id="detail-name">—</h2>
+              <span class="status-pill" id="detail-status-pill">—</span>
+            </div>
+            <p class="detail-company" id="detail-company">—</p>
+            <div class="detail-contacts">
+              <span id="detail-email">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                —
+              </span>
+              <span id="detail-phone">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41 2 2 0 0 1 3.59 2.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.07 6.07l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 17z"/></svg>
+                —
+              </span>
+              <span id="detail-assigned">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                —
+              </span>
+            </div>
+          </div>
+          <div class="score-widget">
+            <svg viewBox="0 0 64 64" width="64" height="64">
+              <circle cx="32" cy="32" r="26" fill="none" stroke="var(--border)" stroke-width="5"/>
+              <circle id="score-arc" cx="32" cy="32" r="26" fill="none" stroke="var(--accent)" stroke-width="5"
+                stroke-dasharray="163" stroke-dashoffset="163" stroke-linecap="round"
+                transform="rotate(-90 32 32)" style="transition: stroke-dashoffset 0.6s ease, stroke 0.3s"/>
+            </svg>
+            <div class="score-center">
+              <span id="score-value">—</span>
+              <span class="score-unit">/ 100</span>
+            </div>
+          </div>
+          <div class="detail-actions">
+            <button class="action-btn" title="Modifier le contact" onclick="openEditModal()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="detail-tags" id="detail-tags"></div>
+
+        <!-- Body: interactions + side panel -->
+        <div class="detail-body">
+
+          <!-- Interactions timeline -->
+          <div class="interactions-panel">
+            <div class="panel-header">
+              <h3>Historique</h3>
+              <span class="count-badge" id="interactions-count">0 interaction</span>
+            </div>
+            <div class="interactions-list" id="interactions-list"></div>
+          </div>
+
+          <!-- Right: notes + info -->
+          <div class="side-panel">
+            <div class="panel-section">
+              <div class="panel-header"><h3>Notes</h3></div>
+              <textarea class="notes-area" id="notes-area" placeholder="Ajouter une note..."></textarea>
+              <button class="btn-ghost small" onclick="saveNotes()">Sauvegarder</button>
+            </div>
+
+            <div class="panel-section">
+              <div class="panel-header"><h3>Informations</h3></div>
+              <div class="info-list" id="info-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ─── RIGHT SIDEBAR: Stats + Simulator ──────────────────── -->
+    <aside class="stats-sidebar">
+      <div class="stats-group">
+        <p class="sidebar-label">Vue d'ensemble</p>
+        <div class="stat-row">
+          <span class="stat-label">Clients</span>
+          <span class="stat-val" id="stat-clients">—</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Prospects</span>
+          <span class="stat-val" id="stat-prospects">—</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Messages / mois</span>
+          <span class="stat-val accent" id="stat-messages">—</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Temps réponse</span>
+          <span class="stat-val" id="stat-response">—</span>
+        </div>
+      </div>
+
+      <div class="stats-group">
+        <p class="sidebar-label">Canaux actifs</p>
+        <div class="channel-bar">
+          <div class="channel-item">
+            <span class="channel-dot wa"></span>
+            <span>WhatsApp</span>
+            <span class="channel-pct">48%</span>
+          </div>
+          <div class="channel-item">
+            <span class="channel-dot sms"></span>
+            <span>SMS</span>
+            <span class="channel-pct">31%</span>
+          </div>
+          <div class="channel-item">
+            <span class="channel-dot mail"></span>
+            <span>Email</span>
+            <span class="channel-pct">21%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-group">
+        <p class="sidebar-label">Assistant IA</p>
+        <label class="confirm-toggle-row">
+          <div class="confirm-toggle-info">
+            <span class="confirm-toggle-title">Confirmer avant action</span>
+            <span class="confirm-toggle-desc">Le bot Telegram demandera validation avant d'exécuter chaque action</span>
+          </div>
+          <div class="toggle-switch" id="confirm-toggle" onclick="toggleConfirmBeforeAction()">
+            <div class="toggle-knob"></div>
+          </div>
+        </label>
+        <div class="confirm-status" id="confirm-status">Désactivé — actions immédiates</div>
+      </div>
+
+      <div class="stats-group sidebar-log-group">
+        <p class="sidebar-label">Activité récente</p>
+        <div class="sidebar-log" id="workflow-log">
+          <span class="log-ready">Système prêt...</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ═══ MESSAGES PAGE ══════════════════════════════════════ -->
+  <div class="page-view hidden" id="page-messages">
+    <div class="page-content">
+      <div class="page-header-block">
+        <h2>Messages</h2>
+        <p>Historique de toutes les conversations multicanales de votre équipe.</p>
+      </div>
+      <div class="messages-grid" id="messages-grid"></div>
+    </div>
+  </div>
+
+  <!-- ═══ ANALYTICS PAGE ═════════════════════════════════════ -->
+  <div class="page-view hidden" id="page-analytics">
+    <div class="page-content">
+      <div class="page-header-block">
+        <h2>Analytiques</h2>
+        <p>Indicateurs de performance et statistiques de votre CRM.</p>
+      </div>
+      <div class="analytics-grid">
+        <div class="analytics-card">
+          <div class="analytics-icon analytics-icon-blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="analytics-label">Contacts totaux</div>
+          <div class="analytics-val" id="an-total">—</div>
+        </div>
+        <div class="analytics-card">
+          <div class="analytics-icon analytics-icon-green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="analytics-label">Messages ce mois</div>
+          <div class="analytics-val" id="an-messages">—</div>
+        </div>
+        <div class="analytics-card">
+          <div class="analytics-icon analytics-icon-orange">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="analytics-label">Temps de réponse moyen</div>
+          <div class="analytics-val" id="an-response">—</div>
+        </div>
+        <div class="analytics-card">
+          <div class="analytics-icon analytics-icon-purple">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="analytics-label">Score satisfaction</div>
+          <div class="analytics-val" id="an-satisfaction">—</div>
+        </div>
+      </div>
+
+      <div class="analytics-section">
+        <h3>Répartition par statut</h3>
+        <div class="analytics-bars">
+          <div class="an-bar-row">
+            <span class="an-bar-label">Clients</span>
+            <div class="an-bar-wrap"><div class="an-bar an-bar-client" id="an-bar-client"></div></div>
+            <span class="an-bar-count" id="an-count-client">—</span>
+          </div>
+          <div class="an-bar-row">
+            <span class="an-bar-label">Prospects</span>
+            <div class="an-bar-wrap"><div class="an-bar an-bar-prospect" id="an-bar-prospect"></div></div>
+            <span class="an-bar-count" id="an-count-prospect">—</span>
+          </div>
+          <div class="an-bar-row">
+            <span class="an-bar-label">Leads</span>
+            <div class="an-bar-wrap"><div class="an-bar an-bar-lead" id="an-bar-lead"></div></div>
+            <span class="an-bar-count" id="an-count-lead">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="analytics-section">
+        <h3>Canaux de communication</h3>
+        <div class="channel-analytics">
+          <div class="channel-analytics-item">
+            <div class="ca-dot wa"></div>
+            <div class="ca-info">
+              <div class="ca-name">WhatsApp</div>
+              <div class="ca-bar-wrap"><div class="ca-bar" style="width:48%;background:#25d366"></div></div>
+            </div>
+            <div class="ca-pct">48%</div>
+          </div>
+          <div class="channel-analytics-item">
+            <div class="ca-dot sms"></div>
+            <div class="ca-info">
+              <div class="ca-name">SMS</div>
+              <div class="ca-bar-wrap"><div class="ca-bar" style="width:31%;background:#3b82f6"></div></div>
+            </div>
+            <div class="ca-pct">31%</div>
+          </div>
+          <div class="channel-analytics-item">
+            <div class="ca-dot mail"></div>
+            <div class="ca-info">
+              <div class="ca-name">Email</div>
+              <div class="ca-bar-wrap"><div class="ca-bar" style="width:21%;background:#8b5cf6"></div></div>
+            </div>
+            <div class="ca-pct">21%</div>
+          </div>
+          <div class="channel-analytics-item">
+            <div class="ca-dot telegram"></div>
+            <div class="ca-info">
+              <div class="ca-name">Telegram</div>
+              <div class="ca-bar-wrap"><div class="ca-bar" style="width:12%;background:#0088cc"></div></div>
+            </div>
+            <div class="ca-pct">12%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ADMIN PAGE ══════════════════════════════════════════ -->
+  <div class="page-view hidden" id="page-admin">
+    <div class="page-content">
+      <div class="page-header-block">
+        <h2>Administration</h2>
+        <p>Paramètres du compte, intégrations et configuration de l'assistant IA.</p>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-section">
+          <h3>Profil utilisateur</h3>
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" id="admin-firstname" class="form-control" placeholder="Hugo" />
+          </div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" id="admin-lastname" class="form-control" placeholder="Fouan" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="admin-email" class="form-control" placeholder="hugo@lexia.fr" />
+          </div>
+          <button class="btn-primary" onclick="saveProfile()">Sauvegarder le profil</button>
+          <div class="admin-result hidden" id="admin-result"></div>
+        </div>
+
+        <div class="admin-section">
+          <h3>Assistant IA — Telegram</h3>
+          <div class="admin-setting-row">
+            <div>
+              <div class="admin-setting-title">Confirmer avant action</div>
+              <div class="admin-setting-desc">Le bot demande validation (Oui / Non) avant d'exécuter les actions détectées</div>
+            </div>
+            <div class="toggle-switch" id="confirm-toggle-admin" onclick="toggleConfirmBeforeAction()">
+              <div class="toggle-knob"></div>
+            </div>
+          </div>
+          <div class="confirm-status admin-confirm-status" id="confirm-status-admin">Désactivé — actions immédiates</div>
+
+          <div class="admin-setting-row" style="margin-top:1.25rem">
+            <div>
+              <div class="admin-setting-title">Bot Telegram</div>
+              <div class="admin-setting-desc">@Lexiafrbot — connecté</div>
+            </div>
+            <span class="status-pill s-client" style="font-size:0.65rem">Actif</span>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <h3>Intégrations</h3>
+          <div class="integration-row">
+            <div class="int-logo brevo">B</div>
+            <div class="int-info">
+              <div class="int-name">Brevo</div>
+              <div class="int-desc">Envoi d'emails transactionnels</div>
+            </div>
+            <span class="status-pill s-client" style="font-size:0.65rem">Connecté</span>
+          </div>
+          <div class="integration-row">
+            <div class="int-logo openai">AI</div>
+            <div class="int-info">
+              <div class="int-name">OpenAI</div>
+              <div class="int-desc">Transcription Whisper + GPT-4o</div>
+            </div>
+            <span class="status-pill s-client" style="font-size:0.65rem">Connecté</span>
+          </div>
+          <div class="integration-row">
+            <div class="int-logo sinch">S</div>
+            <div class="int-info">
+              <div class="int-name">Sinch</div>
+              <div class="int-desc">SMS & messagerie multicanale</div>
+            </div>
+            <span class="status-pill s-prospect" style="font-size:0.65rem">Configuré</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PROFILE MODAL ══════════════════════════════════════ -->
+  <div class="modal-overlay hidden" id="profile-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Mon profil</h3>
+        <button class="modal-close" onclick="closeProfileModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" id="profile-firstname" class="form-control" placeholder="Hugo" />
+        </div>
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" id="profile-lastname" class="form-control" placeholder="Fouan" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="profile-email-input" class="form-control" placeholder="hugo@lexia.fr" />
+        </div>
+        <div class="send-result hidden" id="profile-result"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" onclick="closeProfileModal()">Annuler</button>
+        <button class="btn-primary" onclick="saveProfile()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Sauvegarder
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ WORKFLOW PANEL ════════════════════════════════════════ -->
+  <section class="workflow-panel">
+    <div class="workflow-topbar">
+      <div class="workflow-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Pipeline — Intelligence temps réel
+      </div>
+
+      <div class="workflow-status" id="workflow-status">En attente</div>
+    </div>
+
+    <div class="workflow-body">
+      <div class="stages-row">
+
+        <div class="stage" id="stage-source">
+          <div class="stage-box">
+            <div class="stage-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 8.5a13 13 0 0 1 21 0M5 12a9 9 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0M12 19h.01"/></svg></div>
+            <div class="stage-name">Source</div>
+            <div class="stage-sub" id="stage-sub-source">—</div>
+            <div class="stage-channel" id="stage-channel"></div>
+          </div>
+        </div>
+
+        <div class="stage-arrow" id="arrow-1"></div>
+
+        <div class="stage" id="stage-receive">
+          <div class="stage-box">
+            <div class="stage-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div class="stage-name">Réception</div>
+            <div class="stage-sub" id="stage-sub-receive">—</div>
+          </div>
+        </div>
+
+        <div class="stage-arrow" id="arrow-2"></div>
+
+        <div class="stage" id="stage-transcript">
+          <div class="stage-box">
+            <div class="stage-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg></div>
+            <div class="stage-name">Transcription</div>
+            <div class="stage-sub" id="stage-sub-transcript">—</div>
+            <div class="transcript-bubble hidden" id="transcript-bubble"></div>
+          </div>
+        </div>
+
+        <div class="stage-arrow" id="arrow-3"></div>
+
+        <div class="stage stage-lexia" id="stage-ai">
+          <div class="stage-box">
+            <div class="stage-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01M12 12h.01"/></svg></div>
+            <div class="stage-name stage-name-lexia">Lexia Intelligence</div>
+            <div class="stage-sub" id="stage-sub-ai">—</div>
+            <div class="ai-tags hidden" id="ai-tags"></div>
+          </div>
+        </div>
+
+        <div class="stage-arrow" id="arrow-4"></div>
+
+        <div class="stage" id="stage-actions">
+          <div class="stage-box">
+            <div class="stage-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <div class="stage-name">Actions</div>
+            <div class="stage-sub" id="stage-sub-actions">—</div>
+          </div>
+        </div>
+
+        <div class="stage-arrow" id="arrow-5"></div>
+
+        <div class="stage" id="stage-crm">
+          <div class="stage-box">
+            <div class="stage-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+            <div class="stage-name">CRM</div>
+            <div class="stage-sub" id="stage-sub-crm">—</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ SEND MESSAGE MODAL ════════════════════════════════════ -->
+  <div class="modal-overlay hidden" id="send-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Envoyer un message</h3>
+        <button class="modal-close" onclick="closeSendModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Canal</label>
+          <div class="channel-selector">
+            <button class="chan-btn active" data-chan="WHATSAPP">WhatsApp</button>
+            <button class="chan-btn" data-chan="SMS">SMS</button>
+            <button class="chan-btn" data-chan="email">Email</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Destinataire</label>
+          <input type="text" id="msg-to" class="form-control" placeholder="+33600000000 ou adresse email" />
+        </div>
+        <div class="form-group hidden" id="subject-group">
+          <label>Objet</label>
+          <input type="text" id="msg-subject" class="form-control" placeholder="Objet du message" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="msg-content" class="form-control" rows="4" placeholder="Contenu du message..."></textarea>
+        </div>
+        <div class="send-result hidden" id="send-result"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" onclick="closeSendModal()">Annuler</button>
+        <button class="btn-primary" id="send-btn" onclick="sendMessage()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Envoyer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ EDIT CONTACT MODAL ════════════════════════════════════ -->
+  <div class="modal-overlay hidden" id="edit-modal">
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <h3>Modifier le contact</h3>
+        <button class="modal-close" onclick="closeEditModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="edit-grid">
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" id="edit-name" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Société</label>
+            <input type="text" id="edit-company" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="edit-email" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="text" id="edit-phone" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>WhatsApp</label>
+            <input type="text" id="edit-whatsapp" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Statut</label>
+            <select id="edit-status" class="form-control">
+              <option value="client">Client</option>
+              <option value="prospect">Prospect</option>
+              <option value="lead">Lead</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Segment</label>
+            <select id="edit-segment" class="form-control">
+              <option value="Premium">Premium</option>
+              <option value="Standard">Standard</option>
+              <option value="Enterprise">Enterprise</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Responsable</label>
+            <input type="text" id="edit-assigned" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tags (séparés par des virgules)</label>
+          <input type="text" id="edit-tags" class="form-control" />
+        </div>
+        <div class="edit-result hidden" id="edit-result"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" onclick="closeEditModal()">Annuler</button>
+        <button class="btn-primary" onclick="saveContactEdit()">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ NEW CONTACT MODAL ════════════════════════════════════ -->
+  <div class="modal-overlay hidden" id="new-contact-modal">
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <h3>Nouveau contact</h3>
+        <button class="modal-close" onclick="closeNewContactModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="required-notice">* Champs obligatoires</div>
+
+        <div class="edit-grid">
+          <div class="form-group">
+            <label>Prénom *</label>
+            <input type="text" id="nc-firstname" class="form-control" placeholder="Jean" />
+          </div>
+          <div class="form-group">
+            <label>Nom *</label>
+            <input type="text" id="nc-lastname" class="form-control" placeholder="Dupont" />
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="nc-email" class="form-control" placeholder="jean.dupont@entreprise.com" />
+          </div>
+          <div class="form-group">
+            <label>Téléphone *</label>
+            <input type="tel" id="nc-phone" class="form-control" placeholder="+33600000000" />
+          </div>
+        </div>
+
+        <details class="optional-section">
+          <summary>Informations complémentaires (optionnel)</summary>
+          <div class="edit-grid" style="margin-top:0.75rem">
+            <div class="form-group">
+              <label>Société</label>
+              <input type="text" id="nc-company" class="form-control" placeholder="Acme Corp" />
+            </div>
+            <div class="form-group">
+              <label>WhatsApp</label>
+              <input type="tel" id="nc-whatsapp" class="form-control" placeholder="+33600000000" />
+            </div>
+            <div class="form-group">
+              <label>Statut</label>
+              <select id="nc-status" class="form-control">
+                <option value="lead">Lead</option>
+                <option value="prospect">Prospect</option>
+                <option value="client">Client</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Segment</label>
+              <select id="nc-segment" class="form-control">
+                <option value="Standard">Standard</option>
+                <option value="Premium">Premium</option>
+                <option value="Enterprise">Enterprise</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Responsable</label>
+              <input type="text" id="nc-assigned" class="form-control" placeholder="Alice Dupont" />
+            </div>
+            <div class="form-group">
+              <label>Score (0–100)</label>
+              <input type="number" id="nc-score" class="form-control" placeholder="50" min="0" max="100" />
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:0.5rem">
+            <label>Tags (séparés par des virgules)</label>
+            <input type="text" id="nc-tags" class="form-control" placeholder="nouveau client, priorité haute" />
+          </div>
+          <div class="form-group" style="margin-top:0.5rem">
+            <label>Notes</label>
+            <textarea id="nc-notes" class="form-control" rows="2" placeholder="Informations complémentaires..."></textarea>
+          </div>
+        </details>
+
+        <div class="send-result hidden" id="nc-result"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" onclick="closeNewContactModal()">Annuler</button>
+        <button class="btn-primary" onclick="createContact()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Créer le contact
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
