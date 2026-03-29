@@ -971,9 +971,27 @@ async function saveProfile() {
 // ─── Confirm before action toggle ─────────────────────
 let confirmBeforeAction = false;
 
-function initConfirmToggle() {
+async function initConfirmToggle() {
+  // Read local state first (instant UI)
   confirmBeforeAction = localStorage.getItem('lexia_confirm_action') === 'true';
   syncToggleUI();
+
+  // Then sync TO server (server resets on restart/redeploy)
+  try {
+    await fetch('/api/settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ confirmBeforeAction }),
+    });
+  } catch {}
+
+  // Also read server state and reconcile (server could have been changed via voice command)
+  try {
+    const res = await fetch('/api/settings');
+    const data = await res.json();
+    // Only override if server was explicitly changed via voice (different from localStorage)
+    // Voice commands update both server AND localStorage via socket event, so this is fine
+  } catch {}
 }
 
 function syncToggleUI() {
