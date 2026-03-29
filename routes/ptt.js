@@ -24,12 +24,15 @@ function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 function findContactByName(name, contacts) {
   if (!name) return null;
-  const lower = name.toLowerCase();
+  const lower = name.toLowerCase().trim();
+  const words = lower.split(/\s+/).filter(w => w.length > 2);
   return (
     contacts.find(c => c.name.toLowerCase() === lower) ||
     contacts.find(c => c.name.toLowerCase().includes(lower)) ||
-    contacts.find(c => lower.includes(c.name.toLowerCase().split(' ')[0]))
-  );
+    contacts.find(c => lower.includes(c.name.toLowerCase())) ||
+    contacts.find(c => words.some(w => c.name.toLowerCase().includes(w))) ||
+    contacts.find(c => c.name.toLowerCase().split(/\s+/).some(w => lower.includes(w) && w.length > 2))
+  ) || null;
 }
 
 function addInteraction(data, contactId, fields) {
@@ -166,6 +169,21 @@ router.post('/', upload.single('audio'), async (req, res) => {
           results.push({ action: action.type, status: 'success', target: contact.name, detail: 'Note ajoutée' });
           io.emit('workflow:action', { type: 'ADD_NOTE', contact: contact.name, detail: 'Note ajoutée au CRM' });
 
+        } else if (action.type === 'SET_SETTING') {
+          const settings = require('../utils/settings');
+          const field = action.field;
+          const rawValue = action.value;
+          let detail = '';
+          if (field === 'confirmBeforeAction') {
+            const val = rawValue === 'true' || rawValue === true;
+            settings.confirmBeforeAction = val;
+            detail = val ? 'Confirmation avant action activée' : 'Confirmation avant action désactivée';
+            io.emit('settings:updated', { confirmBeforeAction: val });
+          } else {
+            detail = `Paramètre "${field}" mis à jour`;
+          }
+          results.push({ action: action.type, status: 'success', detail });
+          io.emit('workflow:action', { type: 'SET_SETTING', detail });
         } else if (action.type === 'CREATE_CONTACT') {
           const nc = action.new_contact || {};
           const newName = nc.name || action.target_contact || 'Nouveau contact';

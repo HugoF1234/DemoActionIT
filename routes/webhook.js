@@ -19,12 +19,15 @@ function saveData(data) {
 
 function findContactByName(name, contacts) {
   if (!name) return null;
-  const lower = name.toLowerCase();
+  const lower = name.toLowerCase().trim();
+  const words = lower.split(/\s+/).filter(w => w.length > 2);
   return (
-    contacts.find((c) => c.name.toLowerCase() === lower) ||
-    contacts.find((c) => c.name.toLowerCase().includes(lower)) ||
-    contacts.find((c) => lower.includes(c.name.toLowerCase().split(' ')[0]))
-  );
+    contacts.find(c => c.name.toLowerCase() === lower) ||
+    contacts.find(c => c.name.toLowerCase().includes(lower)) ||
+    contacts.find(c => lower.includes(c.name.toLowerCase())) ||
+    contacts.find(c => words.some(w => c.name.toLowerCase().includes(w))) ||
+    contacts.find(c => c.name.toLowerCase().split(/\s+/).some(w => lower.includes(w) && w.length > 2))
+  ) || null;
 }
 
 function findContactByPhone(phone, contacts) {
@@ -80,16 +83,27 @@ async function executeActions(actions, contacts, io) {
 
       } else if (action.type === 'UPDATE_CONTACT') {
         if (!contact) {
-          results.push({ action: action.type, status: 'error', reason: 'Contact introuvable' });
+          results.push({ action: action.type, status: 'error', reason: `Contact introuvable: "${action.target_contact}"` });
           continue;
         }
         const idx = data.contacts.findIndex((c) => c.id === contact.id);
         if (idx !== -1) {
-          data.contacts[idx][action.field] = action.value;
+          const field = action.field;
+          const value = action.value;
+          // Handle tags as array
+          if (field === 'tags') {
+            const existing = data.contacts[idx].tags || [];
+            const newTags = Array.isArray(value) ? value : value.split(',').map(t => t.trim()).filter(Boolean);
+            data.contacts[idx].tags = [...new Set([...existing, ...newTags])];
+          } else if (field === 'score') {
+            data.contacts[idx].score = Math.min(100, Math.max(0, parseInt(value) || 0));
+          } else {
+            data.contacts[idx][field] = value;
+          }
           data.contacts[idx].lastContact = new Date().toISOString();
         }
         results.push({ action: action.type, status: 'success', target: contact.name, detail: `${action.field} → "${action.value}"` });
-        io.emit('workflow:action', { type: 'UPDATE_CONTACT', contact: contact.name, detail: `${action.field} mis à jour: "${action.value}"` });
+        io.emit('workflow:action', { type: 'UPDATE_CONTACT', contact: contact.name, detail: `${action.field} mis à jour` });
 
       } else if (action.type === 'CREATE_CONTACT') {
         const nc = action.new_contact || {};
@@ -132,6 +146,22 @@ async function executeActions(actions, contacts, io) {
         }
         results.push({ action: action.type, status: 'success', target: contact.name, detail: 'Note ajoutée' });
         io.emit('workflow:action', { type: 'ADD_NOTE', contact: contact.name, detail: 'Note CRM ajoutée' });
+
+      } else if (action.type === 'SET_SETTING') {
+        const settings = require('../utils/settings');
+        const field = action.field;
+        const rawValue = action.value;
+        let detail = '';
+        if (field === 'confirmBeforeAction') {
+          const val = rawValue === 'true' || rawValue === true;
+          settings.confirmBeforeAction = val;
+          detail = val ? 'Confirmation avant action activée' : 'Confirmation avant action désactivée';
+          io.emit('settings:updated', { confirmBeforeAction: val });
+        } else {
+          detail = `Paramètre "${field}" mis à jour`;
+        }
+        results.push({ action: action.type, status: 'success', detail });
+        io.emit('workflow:action', { type: 'SET_SETTING', detail });
       }
     } catch (err) {
       console.error(`Action ${action.type} failed:`, err.message);

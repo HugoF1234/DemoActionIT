@@ -190,22 +190,43 @@ async function processTelegramMessage({ chatId, from, text, voiceFileId }, io, s
 
   const actionable = (aiResult.actions || []).filter(a => a.type !== 'NONE');
 
-  if (actionable.length === 0) {
-    // No actions — just acknowledge
-    await sendTelegramMessage(chatId, `Lexia CRM : Compris. CRM mis à jour.\n\n<i>${aiResult.summary || ''}</i>`);
-    io.emit('workflow:crm_updated', { contactId: contact.id, contactName: contact.name, interaction, actionResults: [] });
+  // SET_SETTING is always executed immediately (meta-command), separate from confirmable actions
+  const settingActions = actionable.filter(a => a.type === 'SET_SETTING');
+  const confirmableActions = actionable.filter(a => a.type !== 'SET_SETTING');
+
+  // Execute settings changes immediately
+  if (settingActions.length > 0) {
+    const { executeActions } = require('./webhook');
+    const settingResults = await executeActions(settingActions, freshData.contacts, io);
+    // Update the local settings reference
+    if (settingActions.some(a => a.field === 'confirmBeforeAction')) {
+      settings.confirmBeforeAction = settingActions.find(a => a.field === 'confirmBeforeAction')?.value === 'true';
+    }
+    const settingLines = settingResults.map(r =>
+      r.status === 'success' ? `✓ ${r.detail}` : `✗ ${r.reason}`
+    );
+    await sendTelegramMessage(chatId, `Lexia CRM — Paramètre mis à jour :\n${settingLines.join('\n')}`);
+    io.emit('crm:refresh');
+  }
+
+  if (confirmableActions.length === 0) {
+    if (settingActions.length === 0) {
+      // No actions at all — just acknowledge
+      await sendTelegramMessage(chatId, `Lexia CRM : Compris. CRM mis à jour.\n\n<i>${aiResult.summary || ''}</i>`);
+      io.emit('workflow:crm_updated', { contactId: contact.id, contactName: contact.name, interaction, actionResults: [] });
+    }
     return;
   }
 
-  if (confirmBeforeAction) {
+  if (settings.confirmBeforeAction) {
     // Ask for confirmation via inline keyboard
-    const summaryText = buildActionSummary(actionable);
-    const confirmMsg = `<b>Lexia Intelligence</b> a détecté ${actionable.length} action${actionable.length > 1 ? 's' : ''} :\n\n${summaryText}\n\nVoulez-vous exécuter ces actions ?`;
+    const summaryText = buildActionSummary(confirmableActions);
+    const confirmMsg = `<b>Lexia Intelligence</b> a détecté ${confirmableActions.length} action${confirmableActions.length > 1 ? 's' : ''} :\n\n${summaryText}\n\nVoulez-vous exécuter ces actions ?`;
 
     const pendingId = eventId.slice(0, 8);
     pendingConfirmations.set(String(chatId), {
       pendingId,
-      actionable,
+      actionable: confirmableActions,
       contact,
       io,
       profileName,
@@ -229,8 +250,8 @@ async function processTelegramMessage({ chatId, from, text, voiceFileId }, io, s
   } else {
     // Execute immediately
     const { executeActions } = require('./webhook');
-    const actionResults = await executeActions(actionable, freshData.contacts, io);
-    saveData(loadData()); // ensure fresh save after executeActions
+    const actionResults = await executeActions(confirmableActions, freshData.contacts, io);
+    saveData(loadData());
 
     io.emit('workflow:crm_updated', {
       contactId: contact.id,

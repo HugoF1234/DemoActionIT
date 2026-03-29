@@ -473,6 +473,16 @@ socket.on('workflow:crm_updated', (data) => {
 
 socket.on('crm:refresh', () => { loadContacts(); loadStats(); });
 
+// Sync toggle from server-side changes (e.g. via voice command)
+socket.on('settings:updated', data => {
+  if (data.confirmBeforeAction !== undefined) {
+    confirmBeforeAction = !!data.confirmBeforeAction;
+    localStorage.setItem('lexia_confirm_action', String(confirmBeforeAction));
+    syncToggleUI();
+    toast(confirmBeforeAction ? 'Confirmation activée' : 'Mode direct activé');
+  }
+});
+
 socket.on('workflow:error', (data) => {
   log(`Erreur: ${data.message}`, 'error');
   el('workflow-status').textContent = 'Erreur';
