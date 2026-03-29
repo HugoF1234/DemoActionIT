@@ -218,7 +218,7 @@ async function processTelegramMessage({ chatId, from, text, voiceFileId }, io, s
     return;
   }
 
-  if (settings.confirmBeforeAction) {
+  if (settings?.confirmBeforeAction) {
     // Ask for confirmation via inline keyboard
     const summaryText = buildActionSummary(confirmableActions);
     const confirmMsg = `<b>Lexia Intelligence</b> a détecté ${confirmableActions.length} action${confirmableActions.length > 1 ? 's' : ''} :\n\n${summaryText}\n\nVoulez-vous exécuter ces actions ?`;
@@ -316,7 +316,7 @@ async function handleCallbackQuery(callbackQuery, io) {
 // ── Webhook endpoint ──────────────────────────────────────────
 router.post('/webhook', async (req, res) => {
   const io = req.app.get('io');
-  const settings = req.app.locals.settings;
+  const settings = req.app.locals.settings || require('../utils/settings');
   res.status(200).json({ ok: true });
 
   try {
@@ -345,7 +345,14 @@ router.post('/webhook', async (req, res) => {
     await processTelegramMessage({ chatId, from, text, voiceFileId }, io, settings);
 
   } catch (err) {
-    console.error('[Telegram] Error:', err.message);
+    console.error('[Telegram] Erreur webhook:', err.message, err.stack);
+    // Try to notify the user if we can extract a chatId
+    try {
+      const msg = req.body?.message;
+      if (msg?.chat?.id) {
+        await sendTelegramMessage(msg.chat.id, `Lexia CRM — Erreur interne: ${err.message}`);
+      }
+    } catch {}
   }
 });
 
