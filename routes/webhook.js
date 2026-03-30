@@ -21,12 +21,13 @@ function findContactByName(name, contacts) {
   if (!name) return null;
   const lower = name.toLowerCase().trim();
   const words = lower.split(/\s+/).filter(w => w.length > 2);
+  const safe = contacts.filter(c => c.name);
   return (
-    contacts.find(c => c.name.toLowerCase() === lower) ||
-    contacts.find(c => c.name.toLowerCase().includes(lower)) ||
-    contacts.find(c => lower.includes(c.name.toLowerCase())) ||
-    contacts.find(c => words.some(w => c.name.toLowerCase().includes(w))) ||
-    contacts.find(c => c.name.toLowerCase().split(/\s+/).some(w => lower.includes(w) && w.length > 2))
+    safe.find(c => c.name.toLowerCase() === lower) ||
+    safe.find(c => c.name.toLowerCase().includes(lower)) ||
+    safe.find(c => lower.includes(c.name.toLowerCase())) ||
+    safe.find(c => words.some(w => c.name.toLowerCase().includes(w))) ||
+    safe.find(c => c.name.toLowerCase().split(/\s+/).some(w => lower.includes(w) && w.length > 2))
   ) || null;
 }
 
@@ -107,8 +108,8 @@ async function executeActions(actions, contacts, io) {
 
       } else if (action.type === 'CREATE_CONTACT') {
         const nc = action.new_contact || {};
-        const newName = nc.name || action.target_contact || 'Nouveau contact';
-        const exists = data.contacts.find(c => c.name.toLowerCase() === newName.toLowerCase());
+        const newName = (nc.name || action.target_contact || 'Nouveau contact').trim();
+        const exists = data.contacts.find(c => c.name && c.name.toLowerCase() === newName.toLowerCase());
         if (exists) {
           results.push({ action: action.type, status: 'error', reason: `Contact "${newName}" existe déjà` });
           continue;
